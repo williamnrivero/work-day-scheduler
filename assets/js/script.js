@@ -1,4 +1,4 @@
-let workDay = {
+var workDay = {
     "9 AM":"",
     "10 AM":"",
     "11 AM":"",
@@ -20,7 +20,7 @@ $(document).ready(function(){
 
 $('#date-today h6').text(moment().format('dddd') + " , " + moment().format('MMMM Do YYYY, h:mm:ss a'));
 
-let counter = 1;
+var counter = 1;
 for(const property in workDay) {
   let textEntry = "#text-entry" + counter;
   $(textEntry).text(workDay[property]);
