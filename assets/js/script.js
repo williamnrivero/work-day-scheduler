@@ -18,16 +18,16 @@ $(document).ready(function(){
     }
 })
 
-$('#date-today h6').text(moment().format('dddd') + " , " + moment().format('MMMM Do YYYY, h:mm:ss a'));
+$('#date-today').text(moment().format('dddd') + " , " + moment().format('MMMM Do YYYY, h:mm:ss a'));
 
 var counter = 1;
 for(const property in workDay) {
-  let textEntry = "#text-entry" + counter;
+  var textEntry = "#text-entry" + counter;
   $(textEntry).text(workDay[property]);
-  let timeId = "#time" + counter;
-  let presentHour = moment().hour();
-  let timeString = $(timeId).text();
-  let timeNumber = hourNumberFromHourString(timeString);  
+  var timeId = "#time" + counter;
+  var presentHour = moment().hour();
+  var timeString = $(timeId).text();
+  var timeNumber = hourNumberFromHourString(timeString);  
   if(timeNumber < presentHour) {
     $(textEntry).addClass("past");
   } else if (timeNumber > presentHour) {
@@ -59,6 +59,7 @@ function hourNumberFromHourString(hourString) {
   }
 }
 
+//Local storage shit
 function loadCorrectDataset() {
   result = localStorage.getItem('workDay')
   return (result ? result : workDay);
@@ -77,7 +78,7 @@ function saveSchedule(hourString, val) {
     initializeLocalStorage();
   }
 
-  let workHours = JSON.parse(localStorage.getItem('workDay'));
+  var workHours = JSON.parse(localStorage.getItem('workDay'));
   workHours[hourString] = val
 
   saveToLocalStorage(workHours);
@@ -85,7 +86,7 @@ function saveSchedule(hourString, val) {
 
 function updateCalendarTasks(dayObject) {
   $(".calendar-row").each(function(index) {
-    let res = $(this).children("div");
+    var res = $(this).children("div");
     $(this).children("textarea").text(dayObject[res.text()]);
   })
 }
